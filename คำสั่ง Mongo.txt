@@ -1,0 +1,92 @@
+>_MONGOSH
+show dbs   = แสดงชื่อฐานข้อมูลทั้งหมด
+use ชื่อฐานข้อมูล = ถ้ามีอยู่แล้วคือการเข้า ถ้ายังไม่มีคือการสร้าง
+db.dropDatabase() = ลบ dbs
+cls  หรือกด CTRL+L = เคลียร์ cmd
+db.createCollection("ชื่อcollection") = สร้างcollection ใน dbs
+db.ชื่อcolli.rensmeCollection("ชื่อใหม่")  = เปลี่ยนชื่อ colli
+db.ชื่อcolli.drop() = ลบ colli
+db.ชื่อcolli.insertOne({name:"not",age:25,email:"not@gmail.com"}) = เพิ่มข้อมูล หรือ แทรกข้อมูล  1คอลั่ม
+db.ชื่อcolli.insertOne([{1},{2},{},])  = เพิ่มข้อมูล หรือ แทรกข้อมูล  2++คอลั่มขึ้นไป
+ชื่อฟิว:["facebook","line","twitter"]  = [] ข้อมูลข้างใน [] จะเป็น Array
+db.ชื่อcolli.insertOne({name:"",age:,email:"",socil:{face:"facebook",li:"line",twit:"twitter"}}) = sodil:{} ใน {} คือสร้างObjย่อย
+db.ชื่อcolli.findOne() = ค้นหาข้อมูล แค่ตัวเดียว จะแสดงแค่อันแรกที่เจอ
+db.ชื่อcolli.findOne().ชื่อฟิว = ค้นหาข้อมูลตามชื่อฟิว จะแสดงแค่ตัวแรกที่เจอ
+db.ชื่อcolli.find()  = ค้นหาข้อมูล แสดงข้อมูลทั้งหมด
+db.ชื่อcolli.find({ชื่อฟิว:ข้อมูลที่ต้องการค้นหา}) = ค้นหาข้อมูลObj จะแสดงข้อมุลทั้ง Obj และ Obj ที่ข้อมูลเหมือนกัน ข้องที่ระบุ 
+db.ชื่อcolli.find({ฟิว1:"", ฟิว2 : ) ค้นหาobj ละเอียดขึ้น
+db.ชื่อcolli.find({"ชื่อ Obj ย่อย.ฟิวที่อยู่ใน Obj ย่อย":ข้อมูลที่ต้องการหา = ค้นหาข้อมูลใน Obj ย่อย
+db.ชื่อcolli.find({"ชื่อ Array":"ชื้อข้อมูลที่ต้องการหา",""= ค้นหาข้อมูลใน Array ข้อมูลจะแสดง Obj ที่ระบุตามจำนวนเท่านั้น และห้ามสลับข้อมูลที่ค้นหา
+
+db.ชื่อcolli.find{field:{$eq:value}} หรือ {field:value} =  == ค้นข้อมูล เท่ากับ
+{ชื่อฟิว:{$ne:ข้อมูลที่ต้องการ}}	=    != ไม่เท่ากับ
+{field:{$gt:value}}        = 	>  มากกว่า
+{field:{$gte:value}} 		= 	=> มากกว่า หรือ เท่ากับ
+{field:{$lt:value}}		= 	<  น้อยกว่า 
+{field:{$lte:value}}		= 	<= น้อยกว่า หรือ เท่ากับ
+
+{field:{$in:[value1,value2,]}}       =   == [] เท่ากับ ค้นหาหลายตัว หาข้อมูลที่เท่ากับใน Array
+{field:{$nin:[value1,value2,]}} 	     =   != [] ไม่เท่ากับ ค้นหาหลายตัว หาข้อมูลที่ไม่เท่ากับใน Array
+
+db.ชื่อcolli.find({$and:[{ฟิว1:ข้อมูล},{ฟิว2:ข้อมูล}]}) = and และ ตรงทั้ง2เงื่อนไข
+({$or:[{ฟิว1:ข้อมูล},{ฟิว2:ข้อมูล}]}) 		=	 or หรือ  ตรงกับเงื่อนไขไดอันหนึ่ง
+({"general.weight":{$not:{gte:52}}})	=	 not ไม่ตรงกับเงื่อนไข
+({$nor:[{ :"" },{ :"" }]})		      = nor (not or ) ไม่ตรงตามเงื่อนไขทังหมด 
+
+db.ชือcolli.updateOne({name:"สมชาย"},{$set:{ฟิว:ข้อมูลที่ต้องการเปลี่ยนเข้าไปแทน}}) = อัพเดทข้อมูลใหม่ หรือ เปลียนแปลงข้อมูล Document
+db.ชือcolli.updateOne({name:"สมชาย"},{$set:{ฟิว1:ข้อมูลที่ต้องการเปลี่ยนเข้าไปแทน1 , ฟิว2:ข้อมูลใหม่2}}) = อัพเดทข้อมูลใหม่ 2+ ข้อมูลขึ้นไป หรือ เปลียนแปลงข้อมูล Document
+
+db.employees.updateMany({address:"ระยอง"},{$set:{salary:50000}})  = อัพเดทที่ละหลายคน หรือ หลาย Document
+
+db.ชื่อcolli.deleteOne({ชื่อฟิว:ข้อมูล}) = ลบ 1 Document
+db.ชื่อcolli.deleteMeny({ชื่อฟิว:ข้อมูล}) = ลบทุก Document ที่เหมือนกัน
+
+.aggregate() = คัดกรองข้อมูล
+-- ถามข้อมูลด้วย $Projection 	(SELECT)
+db.ชื่อฟิว.aggregate([{$project:{_id:1,name:1,salary:0}}]) = แสดงข้อมูลแค่เฉพาะฟิวที่ระบุ 1=แสดง , 0=ไม่แสดง
+
+---- $match (WHERE) ระบุตำแหน่ง
+db.employees.aggregate([{$match:{salary:40000}},{$project:{_id:0,name:1,salary:1}}])  = ใช้่ร่วมกับ $project
+
+---- $count นับจำนวน
+db.employees.aggregate([{$match:{salary:40000}},{$count:"จำนวน"}])
+
+---- $sort (ORDER BY) เรียงลำดับ
+db.employees.aggregate([{$project:{_id:0,name:1,salary:1}},{$sort:{salary:-1}}]) = {salary:1,-1} 1 คือ เรียงจากน้อยไปมาก -1 คือ จากมากไปน้อย
+
+---- $limit (LIMIT) ระบุจำนวนที่จะให้แสดง จากบนลงล่าง
+db.employees.aggregate([{$project:{_id:0,name:1,salary:1}},{$limit:5}])  = แสดง 5คนแรก 
+
+---- $skip ข้าม Document จากบนลงมา
+db.employees.aggregate([{$project:{_id:0,name:1,salary:1}},{$sort:{salary:-1}},{$skip:10}])  = ข้าม 10คนข้างบน
+
+-- ตัวดำ เนินการทางสถิติ ทำงานร่วมกัยบ $group 
+	$sum		= หาผลรวม Document ภายในกลุ่ม
+	$avg 		= หาค่าเฉลี่ย Document ภายในกลุ่ม
+	$min 		= หาค่าต่ำสุด Document ภายในกลุ่ม
+	$max 		= หาค่าสูงสุด Document ภายในกลุ่ม
+	$first 	= หาค่า Document ลําดับแรกในกลุ่ม
+	$last 	= หาค่า Document ลําดับท้ายในกลุ่ม
+	$push 	= แทรกค่า Array ไปยังผลลัพธ์ในกลุ่ม
+	$addToSet 	= แทรกค่า Array ไปยังผลลัพธ์ในกลุ่มโดยไม่ซ้ำกัน
+	
+---- $group (GROUP BY) จัดกลุมข้อมูล
+db.employees.aggregate([{$group:{_id:"$address",จำนวน:{$count:{}}}}]) = รวมข้อมูลที่เหมือนกัน เป็นกลุ่มเดียว และใช้ $count นับจำนวน ถ้า _id:null = ไม่ระบุฟิว จะนับรวมทั้งหมด
+
+---- $sum		= หาผลรวม Document ภายในกลุ่ม $avg , $min , $max , $first , $last วิธีใข้เหมือนกัน ใช้ตำแหน่งเดียวกันได้
+db.employees.aggregate([{$group:{_id:"$department",total:{$sum:"$salary"}}}]) = ผลรวมเงินเดือนแต่ละแผนก
+db.employees.aggregate([{$match:{department:"ฝ่ายขาย"}},{$group:{_id:"$department",total:{$sum:"$salary"}}}]) = ผลรวมเงินเดือนฝ่ายขาย
+
+---- $push      = หารายละเอียดในกลุ่ม หรือ แทรกรายละเอียดไปในกลุ่ม เป็น Obj
+db.employees.aggregate([{$group:{_id:"$department",รวม:{$sum:"$salary"},รายละเอียด:{$push:{name:"$name",salary:"$salary"}}}}])
+
+---- $addToSet      = หารายละเอียดในกลุ่มโดยไม่ซ้ำ  หรือ แทรกรายละเอียดไปในกลุ่ม เป็น Array
+db.employees.aggregate([{$group:{_id:"$department",รวม:{$sum:"$salary"},รายละเอียด:{$addToSet:"$name"}}}])
+
+---- $lookup  เชื่อม collecion หรือ เชื่อตาราง
+------ โครงสร้าง
+db.employees.aggregate([{$lookup:{from:"ชื่อ Collection ด้านนอกที่เชื่อมโยง",localField:"Field จาก Collection หลัก",foreignField:"Field Collection ที่ต้องการจะเชื่อม หรือ จะดึง",as:"ชื่อฟิวที่เก็บของที่จะเชื่อม หรือจะตั้งอะไรก็ได้ที่จะให้แสดงว่าอะไร"}}])
+db.employees.aggregate([{$lookup:{from:"departments",localField:"department_id",foreignField:"id",as:"แผนก"}}])
+
+
+
