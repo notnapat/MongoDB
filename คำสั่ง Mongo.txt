@@ -88,5 +88,7 @@ db.employees.aggregate([{$group:{_id:"$department",รวม:{$sum:"$salary"},�
 db.employees.aggregate([{$lookup:{from:"ชื่อ Collection ด้านนอกที่เชื่อมโยง",localField:"Field จาก Collection หลัก",foreignField:"Field Collection ที่ต้องการจะเชื่อม หรือ จะดึง",as:"ชื่อฟิวที่เก็บของที่จะเชื่อม หรือจะตั้งอะไรก็ได้ที่จะให้แสดงว่าอะไร"}}])
 db.employees.aggregate([{$lookup:{from:"departments",localField:"department_id",foreignField:"id",as:"แผนก"}}])
 
+    Mongoose เชื้อมต่อ MongoDB
+npm install mongoose = ติดตั่ง Mongoose ใน cmd vscode
 
 
