@@ -92,3 +92,10 @@ db.employees.aggregate([{$lookup:{from:"departments",localField:"department_id",
 npm install mongoose = ติดตั่ง Mongoose ใน cmd vscode
 
 
+
+
+
+
+
+
+
